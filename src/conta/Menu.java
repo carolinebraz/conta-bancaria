@@ -1,10 +1,37 @@
 package conta;
 
 import java.util.Scanner;
+import conta.model.Conta;
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 import conta.util.Cores;
 
 public class Menu {
 	public static void main(String[] args) {
+
+		// Teste Conta
+		Conta c1 = new Conta(1, 123, 1, "Alice B", 200000.0f);
+		c1.visualizar();
+		c1.sacar(230000.0f);
+		c1.visualizar();
+		c1.depositar(50000.0f);
+		c1.visualizar();
+
+		// Teste Conta Corrente
+		ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Berenice C", 150000.0f, 15000.0f);
+		cc1.visualizar();
+		cc1.sacar(120000.0f);
+		cc1.visualizar();
+		cc1.depositar(50000.0f);
+		cc1.visualizar();
+
+		// Teste Conta Poupança
+		ContaPoupanca cp1 = new ContaPoupanca(3, 789, 2, "Clarice D", 100000.0f, 15);
+		cp1.visualizar();
+		cp1.sacar(10000.0f);
+		cp1.visualizar();
+		cp1.depositar(50000.0f);
+		cp1.visualizar();
 
 		Scanner scan = new Scanner(System.in);
 
