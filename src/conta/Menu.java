@@ -9,14 +9,6 @@ import conta.util.Cores;
 public class Menu {
 	public static void main(String[] args) {
 
-		// Teste Conta
-		Conta c1 = new Conta(1, 123, 1, "Alice B", 200000.0f);
-		c1.visualizar();
-		c1.sacar(230000.0f);
-		c1.visualizar();
-		c1.depositar(50000.0f);
-		c1.visualizar();
-
 		// Teste Conta Corrente
 		ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Berenice C", 150000.0f, 15000.0f);
 		cc1.visualizar();
