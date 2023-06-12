@@ -29,7 +29,6 @@ public class ContaController implements IContaRepository {
 
 	@Override
 	public void cadastrar(Conta conta) {
-		// conta.setNumero(gerarNumero());
 		listaContas.add(conta);
 		System.out.println("A conta nº " + conta.getNumero() + " foi criada com sucesso!");
 	}
@@ -60,16 +59,43 @@ public class ContaController implements IContaRepository {
 
 	@Override
 	public void sacar(int numero, float valor) {
+		var conta = pesquisarConta(numero);
 
+		if (conta != null) {
+			if (conta.sacar(valor) == true)
+				System.out.printf("\nO saque foi realizado com sucesso! Valor retirado R$ %.2f", valor);
+
+		} else {
+			System.out.println("\nNão é possível sacar! Conta nº " + numero + " não encontrada.");
+		}
 	}
 
 	@Override
 	public void depositar(int numero, float valor) {
+		var conta = pesquisarConta(numero);
 
+		if (conta != null) {
+			conta.depositar(valor);
+			System.out.printf("\nO depósito foi realizado com sucesso! Valor depositado R$ %.2f", valor);
+
+		} else {
+			System.out.println("\nNão é possível depositar! Conta nº " + numero + " não encontrada.");
+		}
 	}
 
 	@Override
-	public void transferir(int contaOrigem, int contaDestino, float valor) {
+	public void transferir(int cOrigem, int cDestino, float valor) {
+		var contaOrigem = pesquisarConta(cOrigem);
+		var contaDestino = pesquisarConta(cDestino);
+
+		if (contaOrigem != null && contaDestino != null) {
+			if (contaOrigem.sacar(valor) == true) {
+				contaDestino.depositar(valor);
+				System.out.println("\nTransferência realizada com sucesso!");
+			}
+		} else {
+			System.out.println("As contas de origem e/ou destino não foram encontradas.");
+		}
 
 	}
 
